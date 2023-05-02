@@ -1,0 +1,8 @@
+
+{% macro var_if_pillar(name, deflt) -%}
+{% set val = salt['pillar.get']('mirrorcache:' + name, deflt) -%}
+        {% if ( val ) -%}
+        MIRRORCACHE_{{ name.upper() }}: '{{ val }}'
+        {% endif %}
+{%- endmacro -%}
+
