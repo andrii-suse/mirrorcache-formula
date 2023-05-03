@@ -8,7 +8,7 @@ common.conf.env:
     - key_values:
         {{ var_if_pillar('root',     'http://download.opensuse.org') -}}
         {{ var_if_pillar('root_nfs', '') -}}
-        MIRRORCACHE_DB_PROVIDER: 'mariadb'
+        {{ var_if_pillar('db_provider', 'mariadb') -}}
         MIRRORCACHE_DBHOST: '{{ salt['pillar.get']('mirrorcache:db:host', '') }}'
         MIRRORCACHE_DBUSER: 'mirrorcache'
         MIRRORCACHE_DBPASS: '{{ salt['pillar.get']('mysql:user:mirrorcache:password', '') }}'

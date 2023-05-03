@@ -2,9 +2,7 @@
 
 set -ex
 
-# TODO somehow this line fails with ubuntu host, so retry with ||
-salt-call -l debug --local state.apply 'mysql.server' || \
-    ( zypper -vn in mariadb && rcmariadb start )
+zypper -vn in mariadb && rcmariadb start
 mariadb -e 'create database mirrorcache'
 mariadb -e 'create user mirrorcache@localhost'
 mariadb -e 'grant all on mirrorcache.* to mirrorcache@localhost'
