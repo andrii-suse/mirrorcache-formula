@@ -7,10 +7,11 @@ mkdir -p /srv/pillar
 echo "
 mirrorcache:
   root: /srv/mirrorcache/dt
-  db_provider: postgresql
   hashes_collect: 1
   zsync_collect: dat
 " > /srv/pillar/testpreset.sls
+
+export MIRRORCACHE_DB_PROVIDER=postgresql
 
 salt-call --local state.apply 'mirrorcache.postgres'
 salt-call --local state.apply 'mirrorcache.backstage' -l debug
