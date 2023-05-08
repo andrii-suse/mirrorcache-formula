@@ -26,9 +26,8 @@ db:
     {%- endif %}
   postgres_database.present:
     - name: mirrorcache
-
-mirrorcache:
   postgres_privileges.present:
+    - name: mirrorcache
     - privileges:
       - all
     - object_name: mirrorcache

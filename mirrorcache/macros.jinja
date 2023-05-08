@@ -6,3 +6,10 @@
         {% endif %}
 {%- endmacro -%}
 
+{% macro var_if_pillar_subtree(name, deflt) -%}
+{% set val = salt['pillar.get']('mirrorcache:' + name + '_subtree', deflt) -%}
+        {% if ( val ) -%}
+        MIRRORCACHE_{{ name.upper() }}: '{{ val }}'
+        {% endif %}
+{%- endmacro -%}
+
