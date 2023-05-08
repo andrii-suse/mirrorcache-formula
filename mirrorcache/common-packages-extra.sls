@@ -1,5 +1,5 @@
 {% set db_provider = 'mariadb' %}
-{% set db_provider_from_conf = salt['cmd.run_stdout']('grep MIRRORCACHE_DB_PROVIDER= /etc/mirrorcache/conf.env 2>/dev/null | tail -n 1 | grep -Eo "[^=]*$"') %}
+{% set db_provider_from_conf = salt['cmd.run_stdout']('(( grep MIRRORCACHE_DB_PROVIDER= /etc/mirrorcache/conf.env | tail -n 1 | grep -Eo "[^=]*$" ) 2> /dev/null || : )', python_shell=True) %}
 {% if db_provider_from_conf %}
   {% set db_provider = db_provider_from_conf %}
 {% else %}
