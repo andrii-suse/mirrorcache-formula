@@ -8,7 +8,7 @@ packages:
   file.directory:
     - user:  mirrorcache
     - group: root
-    - mode:  740
+    - mode:  750
     - require:
       - packages
 

@@ -9,6 +9,11 @@ mirrorcache:
   root: /srv/mirrorcache/dt
   hashes_collect: 1
   zsync_collect: dat
+
+mysql:
+  user:
+    mirrorcache:
+      allow_passwordless: True
 " > /srv/pillar/testpreset.sls
 
 salt-call --local state.apply 'mirrorcache.mariadb'

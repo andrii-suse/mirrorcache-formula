@@ -15,7 +15,7 @@ db:
     {% if dbuserpass -%}
     - password: {{ dbuserpass }}
     {% else -%}
-    - allow_passwordless: True
+    - allow_passwordless: {{ salt['pillar.get']('mysql:user:mirrorcache:allow_passwordless', False) }}
     {% endif -%}
     {% if dbuserhost -%}
     - host: '{{ dbuserhost }}'
