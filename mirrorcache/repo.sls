@@ -8,7 +8,7 @@
 
 {%- if repositories -%}
   {%- for repo, data in repositories.items() -%}
-    {%- if data.baseurl and 'MirrorCache' in data.baseurl -%}
+    {%- if ('baseurl' in data and data['baseurl'] and 'MirrorCache' in data['baseurl']) or ('ibs' in data and 'NPMC' in data['ibs'])  -%}
       {%- do already.update({ 'defined': True }) -%}
     {%- endif -%}
   {%- endfor -%}
