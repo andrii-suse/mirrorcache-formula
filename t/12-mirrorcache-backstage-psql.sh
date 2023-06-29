@@ -16,6 +16,9 @@ export MIRRORCACHE_DB_PROVIDER=postgresql
 salt-call --local state.apply 'mirrorcache.postgres'
 salt-call --local state.apply 'mirrorcache.backstage' -l debug
 
+rcmirrorcache-backstage status || sleep 1
+rcmirrorcache-backstage status || sleep 1
+rcmirrorcache-backstage status || journalctl -u rcmirrorcache-backstage
 rcmirrorcache-backstage status
 rc=0
 rcmirrorcache-hypnotoad || rc=$?

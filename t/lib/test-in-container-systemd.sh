@@ -24,7 +24,6 @@ testcase=$last
 set -euo pipefail
 PODMAN=podman
 (
-# test "${T_PRIVILEGED_TESTS:-}" == 1 || (>&2 echo T_PRIVILEGED_TESTS is not set to 1; exit 1)
 PODMAN_info="$($PODMAN info >/dev/null 2>&1)" || $PODMAN info
 [ -n "$testcase" ] || (echo No testcase provided; exit 1)
 [ -f "$testcase" ] || (echo Cannot find file "$testcase"; exit 1 )

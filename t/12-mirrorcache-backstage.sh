@@ -19,6 +19,9 @@ mysql:
 salt-call --local state.apply 'mirrorcache.mariadb'
 salt-call --local state.apply 'mirrorcache.backstage' -l debug
 
+rcmirrorcache-backstage status || sleep 1
+rcmirrorcache-backstage status || sleep 1
+rcmirrorcache-backstage status || journalctl -u rcmirrorcache-backstage
 rcmirrorcache-backstage status
 rc=0
 rcmirrorcache-hypnotoad || rc=$?
@@ -31,7 +34,6 @@ test $rc -gt 0
 mkdir /_Inline
 chmod o+rwx /_Inline
 ################################
-
 
 (
 set -a
