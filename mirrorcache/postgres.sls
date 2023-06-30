@@ -15,7 +15,7 @@ rcpostgresql:
     - name: postgresql
     - enable: true
 
-db:
+mirrorcache.database:
   postgres_user.present:
     - name: mirrorcache
     {% if dbuserpass -%}
@@ -26,9 +26,5 @@ db:
     {%- endif %}
   postgres_database.present:
     - name: mirrorcache
-  postgres_privileges.present:
-    - name: mirrorcache
-    - privileges:
-      - all
-    - object_name: mirrorcache
-    - object_type: database
+    - owner: mirrorcache
+
