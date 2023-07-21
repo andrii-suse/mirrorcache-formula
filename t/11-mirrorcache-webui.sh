@@ -18,4 +18,7 @@ test $rc -gt 0
 curl -si 127.0.0.1:3000/?json
 curl -s 127.0.0.1:3000/?json | grep repositories
 
+grep MIRRORCACHE_INI=/etc/mirrorcache/conf.ini /etc/mirrorcache/conf.env
+grep root=http://download.opensuse.org /etc/mirrorcache/conf.ini
+
 echo success
