@@ -13,3 +13,9 @@
         {% endif %}
 {%- endmacro -%}
 
+{% macro ini_if_pillar(name, deflt) -%}
+{% set val = salt['pillar.get']('mirrorcache:' + name, deflt) -%}
+        {% if ( val ) -%}
+        {{ name }}: '{{ val }}'
+        {% endif %}
+{%- endmacro -%}

@@ -19,3 +19,10 @@ packages:
     - text: |
         # managed by salt - do not edit!
 
+/etc/mirrorcache/conf.ini:
+  file.prepend:
+    - require:
+      - /etc/mirrorcache
+    - text: |
+        # managed by salt - do not edit!
+
