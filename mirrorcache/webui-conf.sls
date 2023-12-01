@@ -18,7 +18,7 @@ webui.conf.env:
         {{ var_if_pillar('proxy_url',    '') }}
         {{ var_if_pillar('root_country', '') }}
         {{ var_if_pillar('branding',     'openSUSE') }}
-        {{ var_if_pillar('top_folders',  '"debug distribution factory history ports repositories source tumbleweed update"') }}
+        {{ var_if_pillar('top_folders',  '"debug distribution factory history ports repositories slowroll source tumbleweed update"') }}
         {{ var_if_pillar('vpn_prefix',   '') }}
         {{ var_if_pillar('stat_flush_count',  300) }}
         {{ var_if_pillar('root_longitude',    '') }}
