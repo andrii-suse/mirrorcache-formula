@@ -24,14 +24,6 @@ rc=0
 rcmirrorcache-hypnotoad || rc=$?
 test $rc -gt 0
 
-################################
-# This is a workaround to make jobs collect zsync info
-# Must be fixed in MirrorCache
-# Can be salted, but better just fix
-mkdir /_Inline
-chmod o+rwx /_Inline
-################################
-
 (
 set -a
 shopt -s expand_aliases
