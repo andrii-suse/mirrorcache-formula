@@ -7,12 +7,9 @@ dbpkgs:
       - postgresql
       - postgresql-server
 
-postgresql:
-  pkg.installed
-
 rcpostgresql:
   service.running:
-    - name: postgresql
+    - name: postgresql.service
     - enable: true
 
 mirrorcache.database:
