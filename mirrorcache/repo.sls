@@ -1,20 +1,4 @@
-{%- set repositories = salt['pillar.get']('zypper:repositories', {}) -%}
-{%- set already = { 'defined': False } -%}
-
-{# repository might be already defined in zypper pillar, so need to detect it #}
-{%- if not repositories -%}
-  {%- set repositories = salt['pillar.get']('zypp:repositories', {}) -%}
-{%- endif -%}
-
-{%- if repositories -%}
-  {%- for repo, data in repositories.items() -%}
-    {%- if ('baseurl' in data and data['baseurl'] and 'MirrorCache' in data['baseurl']) or ('ibs' in data and 'NPMC' in data['ibs'])  -%}
-      {%- do already.update({ 'defined': True }) -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endif -%}
-
-{%- if already.defined != True -%}
+{%- if 'mirrorcache_formula_enable_repository' in pillar and pillar.mirrorcache_formula_enable_repository -%}
   {% set repourl = salt['pillar.get']('mirrorcache:repourl', 'http://download.opensuse.org/repositories/openSUSE:/infrastructure:/MirrorCache/$releasever/') %}
 mc:
   pkgrepo.managed:
