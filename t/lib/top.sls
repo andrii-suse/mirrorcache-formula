@@ -3,6 +3,7 @@
 
 {{ saltenv }}:
   "*":
+    - repo
     - testpreset
 {% if (salt['grains.has_value']('roles')) %}
   {% for role in roles %}
