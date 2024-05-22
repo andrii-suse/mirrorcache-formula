@@ -11,7 +11,7 @@ webui.conf.env:
     - append_if_not_found: True
     - key_values:
         MIRRORCACHE_INI: /etc/mirrorcache/conf.ini
-        MIRRORCACHE_MATALINK_GREEDY: '3'
+        MIRRORCACHE_METALINK_GREEDY: '3'
         MOJO_LISTEN: 'http://*:3000'
         MOJO_REVERSE_PROXY: '1'
         {{ var_if_pillar('workers',      '') }}
