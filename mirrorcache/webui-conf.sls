@@ -40,7 +40,6 @@ webui.conf.ini:
         {{ ini_if_pillar('redirect_huge','') }}
         {{ ini_if_pillar('huge_file_size','') }}
         {{ ini_if_pillar('small_file_size','') }}
-        {{ ini_if_pillar('city_mmdb','') }}
         {{ ini_if_pillar('ip2location','') }}
 
 # temporary workaround to make ini work, will add variables later
