@@ -11,7 +11,6 @@
   {% endif -%}
 {% endif -%}
 
-
 common.conf.env:
   file.keyvalue:
     - name: /etc/mirrorcache/conf.env
@@ -21,9 +20,8 @@ common.conf.env:
         {{ var_if_pillar('root',     'http://download.opensuse.org') -}}
         {{ var_if_pillar('root_nfs', '')  -}}
         MIRRORCACHE_DB_PROVIDER: {{ db_provider }}
-        MIRRORCACHE_DBHOST: '{{ salt['pillar.get']('mirrorcache:db:host', '') }}'
+        {{ var_if_pillar('dbhost', '')  -}}
         MIRRORCACHE_DBUSER: 'mirrorcache'
-        MIRRORCACHE_DBPASS: '{{ salt['pillar.get']('mysql:user:mirrorcache:password', '') }}'
+        {{ var_if_pillar('dbpass', '')  -}}
         MOJO_PUBSUB_EXPERIMENTAL: '1'
         {{ var_if_pillar('city_mmdb', '') -}}
-

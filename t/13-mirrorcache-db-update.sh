@@ -15,6 +15,8 @@ mariadb -h 127.0.0.1 -umirrorcache -p$PASS -e 'select user(), current_user(), da
 
 # hack the pillar
 echo "
+mirrorcache:
+  dbpass: $PASS
 mysql:
   user:
     mirrorcache:

@@ -1,6 +1,5 @@
 mirrorcache:
-  db:
-    host: 127.0.0.1
+  dbhost: 127.0.0.1
 
 mysql:
   user:
