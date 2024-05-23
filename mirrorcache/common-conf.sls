@@ -23,5 +23,5 @@ common.conf.env:
         {{ var_if_pillar('dbhost', '')  -}}
         MIRRORCACHE_DBUSER: 'mirrorcache'
         {{ var_if_pillar('dbpass', '')  -}}
-        MOJO_PUBSUB_EXPERIMENTAL: '1'
+        #MOJO_PUBSUB_EXPERIMENTAL: '1'
         {{ var_if_pillar('city_mmdb', '') -}}
