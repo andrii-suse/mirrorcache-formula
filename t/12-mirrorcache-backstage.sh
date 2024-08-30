@@ -19,6 +19,9 @@ mysql:
 salt-call --local state.apply 'mirrorcache.mariadb'
 salt-call --local state.apply 'mirrorcache.backstage' -l debug
 
+ls -la /etc/mirrorcache
+ls -la /etc/mirrorcache | grep 'drwxr-x--- 2 root mirrorcache 4096'
+
 rcmirrorcache-backstage status || sleep 1
 rcmirrorcache-backstage status || sleep 1
 rcmirrorcache-backstage status || journalctl -u rcmirrorcache-backstage

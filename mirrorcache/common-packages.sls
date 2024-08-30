@@ -6,8 +6,8 @@ packages:
 
 /etc/mirrorcache:
   file.directory:
-    - user:  mirrorcache
-    - group: root
+    - user:  root
+    - group: mirrorcache
     - mode:  750
     - require:
       - packages
