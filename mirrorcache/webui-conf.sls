@@ -12,7 +12,7 @@ webui.conf.env:
     - key_values:
         MIRRORCACHE_INI: /etc/mirrorcache/conf.ini
         MIRRORCACHE_METALINK_GREEDY: '3'
-        MOJO_LISTEN: 'http://*:3000'
+        MOJO_LISTEN: 'http://[::]:3000'
         MOJO_REVERSE_PROXY: '1'
         {{ var_if_pillar('workers',      '') }}
         {{ var_if_pillar('proxy_url',    '') }}
