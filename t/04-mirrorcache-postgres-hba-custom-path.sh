@@ -34,6 +34,7 @@ postgres:
 salt-call --local state.apply 'mirrorcache.postgres-hba'
 
 # 5. Verify that the custom HBA file was updated correctly
+grep -E '^local\s+all\s+all\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
 grep -E '^host\s+all\s+all\s+127\.0\.0\.1/32\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
 grep -E '^host\s+all\s+all\s+::1/128\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
 grep -E '^host\s+all\s+all\s+10\.0\.0\.99/32\s+scram-sha-256' /var/lib/pgsql/custom_dir/pg_hba.conf

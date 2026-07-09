@@ -24,6 +24,8 @@ webui.conf.env:
         {{ var_if_pillar('root_longitude',    '') }}
         {{ var_if_pillar('metalink_publisher',     '') }}
         {{ var_if_pillar('metalink_publisher_url', '') }}
+    - require:
+      - file: common.conf.env
 
 # historically al variables were in conf.env,
 # but conf.ini was introduced to change parameters without service restart

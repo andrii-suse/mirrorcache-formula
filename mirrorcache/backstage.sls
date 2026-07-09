@@ -20,6 +20,8 @@ backstage.conf.env:
         {{ var_if_pillar('hashes_collect',    '') -}}
         {{ var_if_pillar('backstage_workers', '') -}}
         {{ var_if_pillar('zsync_collect',     'xml.gz') }}
+    - require:
+      - file: common.conf.env
 
 mirrorcache-backstage:
   service.running:
@@ -30,4 +32,3 @@ mirrorcache-backstage-hashes:
   service.running:
     - name: mirrorcache-backstage-hashes
     - enable: true
-
