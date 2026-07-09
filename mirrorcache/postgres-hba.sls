@@ -36,6 +36,15 @@
 include:
   - .postgres
 
+pg_hba_local_socket:
+  file.replace:
+    - name: {{ hba_file }}
+    - pattern: '^(local\s+all\s+all\s+)(ident|trust|peer)'
+    - repl: '\1{{ local_auth }}'
+    - append_if_not_found: False
+    - require:
+      - service: rcpostgresql
+
 pg_hba_local_ipv4:
   file.replace:
     - name: {{ hba_file }}
@@ -69,6 +78,7 @@ postgresql_reload:
   cmd.run:
     - name: systemctl reload postgresql.service
     - onchanges:
+      - file: pg_hba_local_socket
       - file: pg_hba_local_ipv4
       - file: pg_hba_local_ipv6
       {% if remote_host %}

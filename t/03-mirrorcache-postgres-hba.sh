@@ -19,6 +19,7 @@ test "$pass" == hba_test_pass
 salt-call --local state.apply 'mirrorcache.postgres-hba'
 
 # Verify that pg_hba.conf was updated correctly by our Salt state
+grep -E '^local\s+all\s+all\s+md5' /var/lib/pgsql/data/pg_hba.conf
 grep -E '^host\s+all\s+all\s+127\.0\.0\.1/32\s+md5' /var/lib/pgsql/data/pg_hba.conf
 grep -E '^host\s+all\s+all\s+::1/128\s+md5' /var/lib/pgsql/data/pg_hba.conf
 grep -E '^host\s+all\s+all\s+192\.168\.12\.34/32\s+scram-sha-256' /var/lib/pgsql/data/pg_hba.conf
@@ -27,14 +28,22 @@ grep -E '^host\s+all\s+all\s+192\.168\.12\.34/32\s+scram-sha-256' /var/lib/pgsql
 set -a
 shopt -s expand_aliases
 alias sql="psql -d mirrorcache -U mirrorcache --host 127.0.0.1 -c"
+alias sql_socket="psql -d mirrorcache -U mirrorcache -c"
 (
 export PGPASSWORD=$pass
 sql 'select user, current_user, version()'
+sql_socket 'select user, current_user, version()'
 
 echo "test wrong password is denied"
 export PGPASSWORD=wrongpassword
 rc=0
 sql 'select user, current_user, version()' || rc=$?
+test "$rc" -gt 0
+
+echo "test wrong password is denied via local socket"
+export PGPASSWORD=wrongpassword
+rc=0
+sql_socket 'select user, current_user, version()' || rc=$?
 test "$rc" -gt 0
 )
 
