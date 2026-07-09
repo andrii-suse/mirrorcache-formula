@@ -9,6 +9,7 @@ postgres:
     mirrorcache:
       password: hba_test_pass
   remote_host: 192.168.12.34/32
+  remote_user: mirrorcacheremote
   remote_auth: scram-sha-256
 " > /srv/pillar/testpreset.sls
 
@@ -22,7 +23,7 @@ salt-call --local state.apply 'mirrorcache.postgres-hba'
 grep -E '^local\s+all\s+all\s+md5' /var/lib/pgsql/data/pg_hba.conf
 grep -E '^host\s+all\s+all\s+127\.0\.0\.1/32\s+md5' /var/lib/pgsql/data/pg_hba.conf
 grep -E '^host\s+all\s+all\s+::1/128\s+md5' /var/lib/pgsql/data/pg_hba.conf
-grep -E '^host\s+all\s+all\s+192\.168\.12\.34/32\s+scram-sha-256' /var/lib/pgsql/data/pg_hba.conf
+grep -E '^host\s+all\s+mirrorcacheremote\s+192\.168\.12\.34/32\s+scram-sha-256' /var/lib/pgsql/data/pg_hba.conf
 
 # Verify PostgreSQL connection works with the password
 set -a

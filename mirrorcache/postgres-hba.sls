@@ -32,6 +32,7 @@
 {% set local_auth = salt['pillar.get']('postgres:local_auth', 'md5') %}
 {% set remote_host = salt['pillar.get']('postgres:remote_host', '') %}
 {% set remote_auth = salt['pillar.get']('postgres:remote_auth', 'md5') %}
+{% set remote_user = salt['pillar.get']('postgres:remote_user', 'all') %}
 
 include:
   - .postgres
@@ -67,8 +68,8 @@ pg_hba_local_ipv6:
 pg_hba_remote_host:
   file.replace:
     - name: {{ hba_file }}
-    - pattern: '^host\s+all\s+all\s+{{ remote_host | replace(".", "\\.") | replace("/", "\\/") }}\s+.*$'
-    - repl: 'host    all             all             {{ remote_host }}            {{ remote_auth }}'
+    - pattern: '^host\s+all\s+\S+\s+{{ remote_host | replace(".", "\\.") | replace("/", "\\/") }}\s+.*$'
+    - repl: 'host    all             {{ remote_user }}            {{ remote_host }}            {{ remote_auth }}'
     - append_if_not_found: True
     - require:
       - service: rcpostgresql
