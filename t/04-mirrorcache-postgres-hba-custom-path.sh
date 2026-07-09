@@ -25,6 +25,7 @@ postgres:
     mirrorcache:
       password: custom_path_pass
   remote_host: 10.0.0.99/32
+  remote_user: mirrorcacheremote
   remote_auth: scram-sha-256
 " > /srv/pillar/testpreset.sls
 
@@ -37,6 +38,6 @@ salt-call --local state.apply 'mirrorcache.postgres-hba'
 grep -E '^local\s+all\s+all\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
 grep -E '^host\s+all\s+all\s+127\.0\.0\.1/32\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
 grep -E '^host\s+all\s+all\s+::1/128\s+md5' /var/lib/pgsql/custom_dir/pg_hba.conf
-grep -E '^host\s+all\s+all\s+10\.0\.0\.99/32\s+scram-sha-256' /var/lib/pgsql/custom_dir/pg_hba.conf
+grep -E '^host\s+all\s+mirrorcacheremote\s+10\.0\.0\.99/32\s+scram-sha-256' /var/lib/pgsql/custom_dir/pg_hba.conf
 
 echo "success"
